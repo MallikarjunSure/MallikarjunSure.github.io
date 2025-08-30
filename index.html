@@ -1,4 +1,4 @@
-<!-- Hi, this is my-portfolio website code -->
+<!-- Hi, this is my portfolio website -->
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400..900&family=Raleway:wght@400&display=swap" rel="stylesheet">
     <script>
         // Set theme on page load
         if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -82,8 +82,52 @@
 
     <!-- Header -->
     <header id="header" class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md fixed w-full top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">Mallikarjun Sure</a>
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+             <a href="#" class="flex items-center gap-4 group logo-container">
+                <!-- Premium 3D Logo SVG -->
+                <svg class="h-12 w-auto transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#3B82F6" />
+                            <stop offset="50%" stop-color="#8B5CF6" />
+                            <stop offset="100%" stop-color="#EC4899" />
+                        </linearGradient>
+                        <radialGradient id="lightGradient" cx="20%" cy="20%" r="80%">
+                            <stop offset="0%" stop-color="white" stop-opacity="0.3" />
+                            <stop offset="100%" stop-color="white" stop-opacity="0" />
+                        </radialGradient>
+                        <linearGradient id="shimmerGradient" x1="-100%" y1="0" x2="100%" y2="0">
+                            <stop offset="0%" stop-color="white" stop-opacity="0" />
+                            <stop offset="40%" stop-color="white" stop-opacity="0" />
+                            <stop offset="50%" stop-color="white" stop-opacity="0.5" />
+                            <stop offset="60%" stop-color="white" stop-opacity="0" />
+                            <stop offset="100%" stop-color="white" stop-opacity="0" />
+                            <animate attributeName="x1" from="-100%" to="200%" dur="3s" repeatCount="indefinite" />
+                            <animate attributeName="x2" from="0%" to="300%" dur="3s" repeatCount="indefinite" />
+                        </linearGradient>
+                        <filter id="depthShadow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feDropShadow dx="2" dy="4" stdDeviation="2" flood-color="#000" flood-opacity="0.1" />
+                            <feDropShadow dx="5" dy="10" stdDeviation="5" flood-color="#000" flood-opacity="0.2" />
+                            <feDropShadow dx="12" dy="24" stdDeviation="12" flood-color="#000" flood-opacity="0.3" />
+                        </filter>
+                    </defs>
+                    <g transform="translate(75, 75) rotate(6, 0, 0) translate(-75, -75)" style="filter: url(#depthShadow);">
+                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#mainGradient)" />
+                        <text x="75" y="90" font-family="Poppins, sans-serif" font-size="60" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="-5">MS</text>
+                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#lightGradient)" />
+                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#shimmerGradient)" />
+                        <rect x="30" y="30" width="90" height="90" rx="15" fill="none" stroke="white" stroke-opacity="0.1" stroke-width="2"/>
+                    </g>
+                    <g>
+                        <circle cx="15" cy="100" r="4" fill="#F97316" style="filter: url(#depthShadow);"/>
+                        <circle cx="140" cy="45" r="3" fill="#EC4899" style="filter: url(#depthShadow);"/>
+                    </g>
+                </svg>
+                <!-- Text part of the logo -->
+                <div class="hidden sm:block">
+                     <p class="text-xl font-bold text-gray-800 dark:text-white transition-colors">Mallikarjun Sure</p>
+                </div>
+            </a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
                 <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Skills</a>
@@ -655,7 +699,7 @@
                     <a href="https://github.com/MallikarjunSure" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
                     <a href="https://leetcode.com/u/MallikarjunSure/" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fa-solid fa-code"></i></a>
-                    <a href="https://www.hackerrank.com/profile/suremallikarjun2" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-hackerrank"></i></a>
+                    <a href="https://www.hackerrerrank.com/profile/suremallikarjun2" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-hackerrank"></i></a>
                 </div>
             </div>
         </div>
