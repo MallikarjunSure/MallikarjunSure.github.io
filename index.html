@@ -1,881 +1,1591 @@
-<!-- Hi, this is my portfolio website -->
-
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mallikarjun Sure - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="description" content="Portfolio of Mallikarjun Sure, Computer Science and Engineering student focused on cloud, web, and AI solutions.">
+    <title>Mallikarjun Sure | Portfolio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@400..900&family=Raleway:wght@400&display=swap" rel="stylesheet">
-    <script>
-        // Set theme on page load
-        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark')
-        } else {
-            document.documentElement.classList.remove('dark')
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+
     <style>
+        :root {
+            --bg: #f4f3ef;
+            --bg-soft: #fffdf6;
+            --text: #1a1e1f;
+            --muted: #5b6265;
+            --card: #ffffff;
+            --line: #dde2e3;
+            --accent: #0f766e;
+            --accent-2: #ea580c;
+            --accent-3: #164e63;
+            --ok: #166534;
+            --err: #b91c1c;
+            --shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+
+        html.dark {
+            --bg: #101617;
+            --bg-soft: #162022;
+            --text: #ecf0ed;
+            --muted: #a5b2ad;
+            --card: #192224;
+            --line: #2d3a3d;
+            --accent: #2dd4bf;
+            --accent-2: #fb923c;
+            --accent-3: #67e8f9;
+            --ok: #4ade80;
+            --err: #f87171;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: "IBM Plex Sans", sans-serif;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(15, 118, 110, 0.1), transparent 35%),
+                radial-gradient(circle at 85% 5%, rgba(234, 88, 12, 0.1), transparent 30%),
+                linear-gradient(180deg, var(--bg-soft), var(--bg));
+            color: var(--text);
+            line-height: 1.65;
+            min-height: 100vh;
         }
 
-        .fancy-font {
-            font-family: 'Orbitron', sans-serif;
+        h1, h2, h3, h4 {
+            font-family: "Space Grotesk", sans-serif;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1522252234503-e356532cafd5?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .active-tab {
-            background-color: #6366f1 !important;
-            color: white !important;
+        img {
+            max-width: 100%;
+            display: block;
         }
 
-        .skill-bar-fill {
-            transition: width 1.5s ease-in-out;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        
-        .section-fade-in {
+
+        .container {
+            width: min(1120px, 92vw);
+            margin: 0 auto;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(14px);
+            background: color-mix(in srgb, var(--bg-soft) 85%, transparent);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-family: "Space Grotesk", sans-serif;
+        }
+
+        .brand-badge {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 15px;
+            color: #fff;
+            background: linear-gradient(140deg, var(--accent), var(--accent-2));
+            box-shadow: var(--shadow);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: var(--muted);
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .nav-links a {
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: var(--accent);
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            font: inherit;
+            border: 0;
+            cursor: pointer;
+            color: inherit;
+            background: none;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            display: grid;
+            place-items: center;
+            background: var(--card);
+            transition: transform .2s ease, border-color .2s ease;
+        }
+
+        .icon-btn:hover,
+        .icon-btn:focus-visible {
+            transform: translateY(-1px);
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .menu-btn {
+            display: none;
+        }
+
+        .mobile-links {
+            display: none;
+            border-top: 1px solid var(--line);
+            background: var(--bg-soft);
+        }
+
+        .mobile-links.show {
+            display: block;
+        }
+
+        .mobile-links a {
+            display: block;
+            padding: 12px 4vw;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        .hero {
+            padding: 72px 0 42px;
+        }
+
+        .hero-shell {
+            display: grid;
+            grid-template-columns: 1.05fr .95fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: var(--muted);
+            background: color-mix(in srgb, var(--card) 90%, transparent);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            margin-bottom: 10px;
+            white-space: nowrap;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.8vw, 1.3rem);
+            color: var(--muted);
+            margin-bottom: 24px;
+            min-height: 36px;
+        }
+
+        .typing {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 22px;
+            background: var(--accent);
+            margin-left: 6px;
+            transform: translateY(3px);
+            animation: blink .8s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .hero-copy {
+            color: var(--muted);
+            max-width: 60ch;
+        }
+
+        .cta-row {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+            outline: none;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(130deg, var(--accent), var(--accent-3));
+        }
+
+        .btn-secondary {
+            border-color: var(--line);
+            background: var(--card);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 22px;
+            color: var(--muted);
+        }
+
+        .social-row a {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            display: grid;
+            place-items: center;
+            background: var(--card);
+            transition: color .2s ease, transform .2s ease, border-color .2s ease;
+        }
+
+        .social-row a:hover,
+        .social-row a:focus-visible {
+            color: var(--accent);
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            outline: none;
+        }
+
+        .hero-card {
+            padding: 26px;
+            background: linear-gradient(160deg, color-mix(in srgb, var(--card) 95%, transparent), color-mix(in srgb, var(--bg) 70%, transparent));
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: auto -18% -40% auto;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, color-mix(in srgb, var(--accent-2) 38%, transparent), transparent 70%);
+            pointer-events: none;
+        }
+
+        .photo-wrap {
+            width: min(300px, 80%);
+            margin: 0 auto 18px;
+            border-radius: 20px;
+            border: 1px solid var(--line);
+            overflow: hidden;
+        }
+
+        .stat-grid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat strong {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        section {
+            padding: 64px 0;
+        }
+
+        .section-head {
+            margin-bottom: 24px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.4rem, 2.2vw, 2.2rem);
+            margin-bottom: 6px;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            max-width: 70ch;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .about-cards .mini {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: color-mix(in srgb, var(--card) 90%, transparent);
+            padding: 14px;
+        }
+
+        .about-cards i {
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+
+        .skill-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .tab {
+            padding: 9px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--card);
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .tab.active {
+            color: #fff;
+            border-color: transparent;
+            background: linear-gradient(120deg, var(--accent), var(--accent-3));
+        }
+
+        .skill-panel {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .skill-panel.show {
+            display: block;
+        }
+
+        .skill-empty {
+            color: var(--muted);
+            font-size: 14px;
+            padding: 8px 0;
+        }
+
+        .skill-item {
+            margin: 10px 0;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .meter {
+            width: 100%;
+            height: 10px;
+            border-radius: 99px;
+            background: color-mix(in srgb, var(--line) 65%, transparent);
+            overflow: hidden;
+        }
+
+        .meter > span {
+            display: block;
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(100deg, var(--accent), var(--accent-2));
+            transition: width 1.4s ease;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .project {
+            overflow: hidden;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+        }
+
+        .project-body {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .story {
+            border: 1px dashed var(--line);
+            border-radius: 12px;
+            padding: 10px;
+            background: color-mix(in srgb, var(--bg-soft) 80%, transparent);
+        }
+
+        .story p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .project-actions {
+            margin-top: auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .pill {
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            padding: 4px 10px;
+            background: color-mix(in srgb, var(--card) 86%, transparent);
+        }
+
+        .timeline {
+            border-left: 2px solid var(--line);
+            margin-top: 10px;
+            padding-left: 16px;
+        }
+
+        .timeline-item {
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: absolute;
+            left: -22px;
+            top: 7px;
+            background: var(--accent);
+        }
+
+        .timeline small {
+            color: var(--muted);
+        }
+
+        .awards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .award-item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+            background: color-mix(in srgb, var(--card) 90%, transparent);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .award-item i {
+            color: var(--accent-2);
+            margin-top: 4px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .cert {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+            background: color-mix(in srgb, var(--card) 90%, transparent);
+        }
+
+        .cert h4 {
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .cert p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .cert a {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .95fr 1.05fr;
+            gap: 16px;
+        }
+
+        .contact-lines {
+            display: grid;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .line {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: var(--muted);
+        }
+
+        .line i {
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .field {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 11px 12px;
+            border-radius: 10px;
+            border: 1px solid var(--line);
+            background: var(--bg-soft);
+            color: var(--text);
+            font: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: 2px solid color-mix(in srgb, var(--accent) 55%, transparent);
+            outline-offset: 1px;
+            border-color: var(--accent);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #form-status {
+            margin-top: 8px;
+            min-height: 24px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .fade {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transform: translateY(16px);
+            transition: opacity .55s ease, transform .55s ease;
         }
 
-        .section-fade-in.visible {
+        .fade.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .typing-cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.5rem;
-            background-color: #818cf8; /* Lighter indigo for dark mode visibility */
-            animation: blink 0.7s infinite;
-        }
-        
-        .dark .typing-cursor {
-             background-color: #a5b4fc;
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 20px 0 30px;
+            color: var(--muted);
         }
 
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 980px) {
+            .hero-shell,
+            .grid-2,
+            .contact-grid {
+                grid-template-columns: 1fr;
             }
-            50% {
-                opacity: 0;
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cert-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .awards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding-top: 46px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                white-space: normal;
+            }
+
+            .menu-btn {
+                display: grid;
+            }
+
+            .brand-text {
+                display: none;
+            }
+
+            .about-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid,
+            .cert-grid,
+            .stat-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 52px 0;
             }
         }
     </style>
+
+    <script>
+        if (localStorage.getItem("theme") === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+            document.documentElement.classList.add("dark");
+        }
+    </script>
 </head>
-
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
-
-    <!-- Header -->
-    <header id="header" class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md fixed w-full top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-             <a href="#" class="flex items-center gap-4 group logo-container">
-                <!-- Premium 3D Logo SVG -->
-                <svg class="h-12 w-auto transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="mainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#3B82F6" />
-                            <stop offset="50%" stop-color="#8B5CF6" />
-                            <stop offset="100%" stop-color="#EC4899" />
-                        </linearGradient>
-                        <radialGradient id="lightGradient" cx="20%" cy="20%" r="80%">
-                            <stop offset="0%" stop-color="white" stop-opacity="0.3" />
-                            <stop offset="100%" stop-color="white" stop-opacity="0" />
-                        </radialGradient>
-                        <linearGradient id="shimmerGradient" x1="-100%" y1="0" x2="100%" y2="0">
-                            <stop offset="0%" stop-color="white" stop-opacity="0" />
-                            <stop offset="40%" stop-color="white" stop-opacity="0" />
-                            <stop offset="50%" stop-color="white" stop-opacity="0.5" />
-                            <stop offset="60%" stop-color="white" stop-opacity="0" />
-                            <stop offset="100%" stop-color="white" stop-opacity="0" />
-                            <animate attributeName="x1" from="-100%" to="200%" dur="3s" repeatCount="indefinite" />
-                            <animate attributeName="x2" from="0%" to="300%" dur="3s" repeatCount="indefinite" />
-                        </linearGradient>
-                        <filter id="depthShadow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feDropShadow dx="2" dy="4" stdDeviation="2" flood-color="#000" flood-opacity="0.1" />
-                            <feDropShadow dx="5" dy="10" stdDeviation="5" flood-color="#000" flood-opacity="0.2" />
-                            <feDropShadow dx="12" dy="24" stdDeviation="12" flood-color="#000" flood-opacity="0.3" />
-                        </filter>
-                    </defs>
-                    <g transform="translate(75, 75) rotate(6, 0, 0) translate(-75, -75)" style="filter: url(#depthShadow);">
-                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#mainGradient)" />
-                        <text x="75" y="90" font-family="Poppins, sans-serif" font-size="60" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="-5">MS</text>
-                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#lightGradient)" />
-                        <rect x="25" y="25" width="100" height="100" rx="20" fill="url(#shimmerGradient)" />
-                        <rect x="30" y="30" width="90" height="90" rx="15" fill="none" stroke="white" stroke-opacity="0.1" stroke-width="2"/>
-                    </g>
-                    <g>
-                        <circle cx="15" cy="100" r="4" fill="#F97316" style="filter: url(#depthShadow);"/>
-                        <circle cx="140" cy="45" r="3" fill="#EC4899" style="filter: url(#depthShadow);"/>
-                    </g>
-                </svg>
-                <!-- Text part of the logo -->
-                <div class="hidden sm:block">
-                     <p class="text-xl font-bold text-gray-800 dark:text-white transition-colors">Mallikarjun Sure</p>
-                </div>
+<body>
+    <header class="topbar">
+        <div class="container nav">
+            <a href="#top" class="brand" aria-label="Home">
+                <span class="brand-badge">MS</span>
+                <span class="brand-text">Mallikarjun Sure</span>
             </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#about" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a>
-                <a href="#skills" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Skills</a>
-                <a href="#projects" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Projects</a>
-                <a href="#education" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Education</a>
-                <a href="#contact" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a>
-                <button id="theme-toggle" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none text-xl">
-                    <i class="fas fa-moon" id="theme-toggle-dark-icon"></i>
-                    <i class="fas fa-sun hidden" id="theme-toggle-light-icon"></i>
+
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#education">Education</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="actions">
+                <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="menu-toggle" class="icon-btn menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-links">
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
-             <div class="md:hidden flex items-center gap-4">
-                 <button id="theme-toggle-mobile" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none text-xl">
-                    <i class="fas fa-moon" id="theme-toggle-dark-icon-mobile"></i>
-                    <i class="fas fa-sun hidden" id="theme-toggle-light-icon-mobile"></i>
-                </button>
-                <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-             </div>
-        </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-800">
-            <a href="#about" class="block py-2 px-4 text-sm text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700">About</a>
-            <a href="#skills" class="block py-2 px-4 text-sm text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700">Skills</a>
-            <a href="#projects" class="block py-2 px-4 text-sm text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700">Projects</a>
-            <a href="#education" class="block py-2 px-4 text-sm text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700">Education</a>
-            <a href="#contact" class="block py-2 px-4 text-sm text-gray-600 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700">Contact</a>
+        </div>
+
+        <div id="mobile-links" class="mobile-links" aria-label="Mobile">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+            <a href="#contact">Contact</a>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-bg text-white h-screen flex items-center justify-center text-center">
-            <div class="container mx-auto px-6">
-                 <img src="dp.jpg" alt="Mallikarjun Sure" class="w-40 h-40 rounded-full mx-auto mb-6 border-4 border-white/50 dark:border-white/20 shadow-lg">
-                <h1 class="text-5xl md:text-7xl font-bold mb-4 fancy-font">Hi, I'm Mallikarjun Sure</h1>
-                <p class="text-2xl md:text-3xl mb-8">
-                    I'm <span id="typing-text" class="text-indigo-300 dark:text-indigo-400 font-semibold"></span><span class="typing-cursor"></span>
-                </p>
-                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-200 dark:text-gray-300 mb-10">
-                    An ambitious Computer Science student passionate about transforming ideas into reality with modern technology. Eager to apply my growing skills in cloud computing, web development, and AI to solve real-world challenges.
-                </p>
-                <div class="flex justify-center items-center space-x-4 mb-10">
-                    <a href="#projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">View My Work</a>
-                    <a href="#contact" class="bg-gray-700/50 hover:bg-gray-700/80 backdrop-blur-sm text-white font-bold py-3 px-8 rounded-full transition duration-300">Get In Touch</a>
-                </div>
-                <div class="flex justify-center items-center space-x-6 text-3xl">
-                    <a href="https://github.com/MallikarjunSure" target="_blank" class="text-gray-300 hover:text-white transition"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" class="text-gray-300 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://leetcode.com/u/MallikarjunSure/" target="_blank" class="text-gray-300 hover:text-white transition"><i class="fa-solid fa-code"></i></a>
-                    <a href="https://www.hackerrank.com/profile/suremallikarjun2" target="_blank" class="text-gray-300 hover:text-white transition"><i class="fab fa-hackerrank"></i></a>
-                </div>
-                 <a href="#about" class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-300 hover:text-white"><i class="fas fa-arrow-down text-3xl"></i></a>
-            </div>
-        </section>
-
-        <!-- About Me -->
-        <section id="about" class="py-20 bg-white dark:bg-gray-900 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">About Me</h2>
-                <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-2/3">
-                        <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                            I am a dedicated Computer Science and Engineering student at the Ballari Institute of Technology and Management, currently on track to graduate in 2026 with a CGPA of 8.76. My academic journey is driven by a passion for technology and a commitment to continuous learning in cloud computing and software development.
-                        </p>
-                        <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">
-                           My expertise spans across multiple domains including cloud platforms (AWS, Google Cloud), programming languages (C, Java), and modern web technologies. I believe in building scalable solutions that solve real-world problems through clean, efficient code.
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                                <i class="fas fa-cloud text-3xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-                                <h3 class="text-xl font-bold mb-2">Cloud Computing</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Certified in AWS and Google Cloud with hands-on experience in cloud architecture and deployment.</p>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                                <i class="fas fa-code text-3xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-                                <h3 class="text-xl font-bold mb-2">Full Stack Development</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Proficient in modern web technologies including HTML, CSS, JavaScript, and various frameworks.</p>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                                <i class="fas fa-database text-3xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-                                <h3 class="text-xl font-bold mb-2">Database Management</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Experienced with SQL databases and data structures for efficient data management.</p>
-                            </div>
-                            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg">
-                                <i class="fas fa-robot text-3xl text-indigo-600 dark:text-indigo-400 mb-3"></i>
-                                <h3 class="text-xl font-bold mb-2">AI & Innovation</h3>
-                                <p class="text-gray-600 dark:text-gray-400">Built AI-powered applications including virtual assistants with speech recognition capabilities.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="md:w-1/3 relative">
-                        <img src="profesional.jpg" alt="About Me Image" class="rounded-lg shadow-2xl w-full">
-                         <div class="absolute -top-4 -right-4 bg-indigo-600 text-white p-4 rounded-lg shadow-lg">
-                            <p class="font-bold text-2xl">2026</p>
-                            <p>Graduate</p>
-                        </div>
-                        <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-700 text-gray-800 dark:text-white p-4 rounded-lg shadow-lg">
-                            <p class="font-bold text-2xl">8.76</p>
-                            <p>Current CGPA</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills & Expertise -->
-        <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-950 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">Skills & Expertise</h2>
-                 <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                <p class="text-center text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-                    A comprehensive overview of my technical skills, certifications, and areas of expertise.
-                </p>
-                <div class="flex justify-center mb-8 space-x-2 md:space-x-4">
-                    <button class="skill-tab active-tab bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-2 px-6 rounded-full transition" data-tab="programming">Programming</button>
-                    <button class="skill-tab bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-2 px-6 rounded-full transition" data-tab="tools">Tools & Platforms</button>
-                    <button class="skill-tab bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 font-semibold py-2 px-6 rounded-full transition" data-tab="databases">Databases</button>
-                </div>
-
-                <div id="skills-content" class="max-w-4xl mx-auto">
-                    <!-- Programming Skills -->
-                    <div class="skill-content active" id="programming">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                           <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">C</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">75%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="75%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">Java</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="85%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">HTML/CSS</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">95%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="95%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">JavaScript</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">80%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="80%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Cloud Skills -->
-                    
-                    <!-- Tools & Platforms -->
-                    <div class="skill-content hidden" id="tools">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                           <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">Git</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">90%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="90%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">VS Code</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">95%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="95%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">Eclipse</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">80%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="80%"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">GitHub</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="85%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Databases Skills -->
-                    <div class="skill-content hidden" id="databases">
-                       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                           <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">SQL</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">85%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="85%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">MySQL</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">80%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="80%"></div>
-                                </div>
-                            </div>
-                             <div>
-                                <div class="flex justify-between mb-1">
-                                    <span class="text-base font-medium text-gray-700 dark:text-gray-300">Data Structures</span>
-                                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">70%</span>
-                                </div>
-                                <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                                    <div class="bg-indigo-600 dark:bg-indigo-500 h-2.5 rounded-full skill-bar-fill" style="width: 0%" data-width="70%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Certifications & Training -->
-        <section id="certifications" class="py-20 bg-white dark:bg-gray-900 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">Certifications & Training</h2>
-                 <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Certificate 1 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-google text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Google Cloud Career Launchpad</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Google</p>
-                        <a href="https://drive.google.com/file/d/1h9YNH1qI8-eUvlwvVIOq-cNBjMhZhJxV/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 2 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-aws text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">AWS Cloud Quest: Cloud Practitioner</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Amazon Web Services</p>
-                        <a href="https://www.credly.com/badges/356f2462-f34d-4d0c-8904-2b333eb25833/public_url" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 3 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-aws text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">AWS Cloud Practitioner Essentials</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">AWS</p>
-                        <a href="https://drive.google.com/file/d/1cSCMmSfzA17zLdMzaf8yViKI5o_iCbDF/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                    <!-- Certificate 4 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-ibm text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Getting Started with Enterprise Data Science</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">IBM</p>
-                        <a href="https://drive.google.com/file/d/1MDcDVxauD8s3WOrd6MUzq1PytV3WAYtb/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 5 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-ibm text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Getting Started with Enterprise-grade AI</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">IBM</p>
-                        <a href="https://drive.google.com/file/d/10aNRYBEqzH-T8qSxYoMZhWIBqNaYNb1W/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 6 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-python text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Python Programming</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">EZ Trainings & Technologies</p>
-                        <a href="https://drive.google.com/file/d/1XzjUCNBeX0Dcw1NVIeeHekjOzz-1NrUy/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 7 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fab fa-python text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Python Foundation Certificate</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Programming Foundation</p>
-                        <a href="https://drive.google.com/file/d/1rByltdtOaXKmd3Fj0h7QLRpmMVcCFG-d/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 8 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                         <i class="fas fa-trophy text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">HACKVYUHA 2025 Certificate</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Hackathon Achievement</p>
-                        <a href="https://drive.google.com/file/d/1R5slbNicTiWiP1pJWnm6FHudjd8TCSCE/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 9 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                        <i class="fas fa-database text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Database and SQL</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Database Training</p>
-                        <a href="https://drive.google.com/file/d/1k6brHV6gxVXdjSvOa2BOjCWvUDlce0aB/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                     <!-- Certificate 10 -->
-                    <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-xl dark:hover:shadow-indigo-500/20 transition-shadow duration-300 group">
-                        <i class="fas fa-cogs text-3xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Data Structures and Algorithms using Java</h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-4">Programming Course</p>
-                        <a href="https://drive.google.com/file/d/1KNcnsrOpb5pQNyY8caEJeG4pnEbdAgkp/view?usp=sharing" target="_blank" class="text-indigo-600 dark:text-indigo-400 font-semibold opacity-0 group-hover:opacity-100 transition-opacity">View Certificate <i class="fas fa-external-link-alt ml-1"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Additional Expertise -->
-        <section class="py-20 bg-gray-50 dark:bg-gray-950 section-fade-in">
-             <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">Additional Expertise</h2>
-                 <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
-                     <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                         <i class="fas fa-microphone-alt text-4xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                         <h3 class="text-2xl font-bold mb-2">Speech Recognition</h3>
-                         <p class="text-gray-600 dark:text-gray-400">Experience with speech synthesis and recognition technologies for AI applications.</p>
-                     </div>
-                     <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                         <i class="fas fa-lightbulb text-4xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                         <h3 class="text-2xl font-bold mb-2">Problem Solving</h3>
-                         <p class="text-gray-600 dark:text-gray-400">Strong analytical skills with experience in competitive programming platforms.</p>
-                     </div>
-                     <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                         <i class="fas fa-infinity text-4xl text-indigo-600 dark:text-indigo-400 mb-4"></i>
-                         <h3 class="text-2xl font-bold mb-2">Continuous Learning</h3>
-                         <p class="text-gray-600 dark:text-gray-400">Committed to staying updated with latest technologies and industry best practices.</p>
-                     </div>
-                 </div>
-            </div>
-        </section>
-
-
-        <!-- My Projects -->
-        <section id="projects" class="py-20 bg-white dark:bg-gray-900 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">My Projects</h2>
-                <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                <p class="text-center text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-                    Here is a featured project I've worked on, showcasing my skills in AI and web development.
-                </p>
-                
-                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 max-w-md mx-auto">
-                    <!-- Project 1: Jarvis Virtual Assistant -->
-                    <div class="project-card" data-category="ai-ml web">
-                        <div class="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden group">
-                            <img src="jarvis-project.png" alt="JARVIS Virtual Assistant" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">JARVIS Virtual Assistant</h3>
-                                <p class="text-gray-600 dark:text-gray-400 mb-4">An AI-powered virtual assistant built with HTML, CSS, and JavaScript, featuring speech synthesis for text-to-speech and...</p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 text-sm font-medium px-2.5 py-0.5 rounded-full">HTML</span>
-                                    <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 text-sm font-medium px-2.5 py-0.5 rounded-full">CSS</span>
-                                    <span class="bg-indigo-100 text-indigo-800 dark:bg-indigo-900/50 dark:text-indigo-300 text-sm font-medium px-2.5 py-0.5 rounded-full">JavaScript</span>
-                                    <span class="bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300 text-sm font-medium px-2.5 py-0.5 rounded-full">AI</span>
-                                </div>
-                                <div class="flex space-x-4">
-                                    <a href="https://mallikarjunsurejarvisvirtualassistant.netlify.app/" target="_blank" class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 transition">View Project</a>
-                                    <!-- <a href="https://github.com/MallikarjunSure/JARVIS-Virtual-Assistant" target="_blank" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 py-2 px-4 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">Code</a> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                 <div class="text-center mt-12">
-                     <a href="https://github.com/MallikarjunSure" target="_blank" class="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 font-bold py-3 px-8 rounded-full hover:bg-gray-900 dark:hover:bg-white transition duration-300">
-                        View All Projects on GitHub
-                    </a>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Education & Achievements -->
-        <section id="education" class="py-20 bg-gray-50 dark:bg-gray-950 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">Education & Achievements</h2>
-                <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                 <p class="text-center text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-                    My educational journey and recognition for academic excellence and technical innovation.
-                </p>
-
-                <!-- Education -->
-                <div class="mb-16">
-                    <h3 class="text-3xl font-bold mb-8 text-center md:text-left">Education</h3>
-                    <div class="border-l-4 border-indigo-200 dark:border-indigo-800 pl-8 space-y-12">
-                        <!-- B.Tech -->
-                        <div class="relative">
-                             <div class="absolute -left-10 w-6 h-6 bg-indigo-600 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-950"></div>
-                             <p class="text-sm text-gray-500 dark:text-gray-400">November 2022 - June 2026</p>
-                            <h4 class="text-xl font-bold">Ballari Institute of Technology and Management</h4>
-                             <p class="text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Bachelor of Engineering - Computer Science and Engineering</p>
-                            <p class="text-gray-700 dark:text-gray-300">CGPA: 8.76/10</p>
-                        </div>
-                         <!-- Pre-University -->
-                        <div class="relative">
-                            <div class="absolute -left-10 w-6 h-6 bg-indigo-600 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-950"></div>
-                            <p class="text-sm text-gray-500 dark:text-gray-400">August 2020 - April 2022</p>
-                            <h4 class="text-xl font-bold">SC Gurukula PU College</h4>
-                             <p class="text-indigo-600 dark:text-indigo-400 font-semibold mb-2">Pre-University Course (PUC) - PCMB</p>
-                            <p class="text-gray-700 dark:text-gray-300">Percentage: 73.66%</p>
-                        </div>
-                         <!-- High School -->
-                         <div class="relative">
-                           <div class="absolute -left-10 w-6 h-6 bg-indigo-600 dark:bg-indigo-400 rounded-full border-4 border-white dark:border-gray-950"></div>
-                           <p class="text-sm text-gray-500 dark:text-gray-400">June 2019 - July 2020</p>
-                            <h4 class="text-xl font-bold">Sri Channabasaweshvara Gurukula Residential High School</h4>
-                            <p class="text-indigo-600 dark:text-indigo-400 font-semibold mb-2">SSLC Secondary Education</p>
-                            <p class="text-gray-700 dark:text-gray-300">Percentage: 95.36%</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Awards & Recognition -->
+    <main id="top">
+        <section class="hero fade">
+            <div class="container hero-shell">
                 <div>
-                     <h3 class="text-3xl font-bold mb-8 text-center md:text-left">Awards & Recognition</h3>
-                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                         <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center gap-4">
-                             <i class="fas fa-trophy text-4xl text-yellow-500"></i>
-                             <div>
-                                 <h4 class="text-lg font-bold">Best Cutting-edge Technology Award</h4>
-                                 <p class="text-gray-600 dark:text-gray-400">HACKVYUHA 2025 - National Level Hackathon</p>
-                             </div>
-                         </div>
-                          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center gap-4">
-                             <i class="fas fa-medal text-4xl text-gray-400"></i>
-                             <div>
-                                 <h4 class="text-lg font-bold">Top 7 Finalist - Inter College Hackathon</h4>
-                                 <p class="text-gray-600 dark:text-gray-400">HACKB-24 at BITM, Ballari</p>
-                             </div>
-                         </div>
-                          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center gap-4">
-                             <i class="fas fa-award text-4xl text-orange-400"></i>
-                             <div>
-                                 <h4 class="text-lg font-bold">Top 10 Finalist - State-Level Hackathon</h4>
-                                 <p class="text-gray-600 dark:text-gray-400">IGNITRON 2K24 at G M University, Davanagere</p>
-                             </div>
-                         </div>
-                          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md flex items-center gap-4">
-                             <i class="fas fa-graduation-cap text-4xl text-blue-500"></i>
-                             <div>
-                                 <h4 class="text-lg font-bold">Shikshana Shikhara Prashasti Puraskara</h4>
-                                 <p class="text-gray-600 dark:text-gray-400">Awarded for securing 95.36% in SSLC board examinations</p>
-                             </div>
-                         </div>
-                     </div>
+                    <span class="eyebrow">
+                        <i class="fa-solid fa-terminal"></i>
+                        CSE Student | Cloud and AI Enthusiast
+                    </span>
+                    <h1>Hi, I am Mallikarjun Sure</h1>
+                    <p class="hero-sub">
+                        I am <span id="typing-text" class="typing"></span><span class="cursor" aria-hidden="true"></span>
+                    </p>
+                    <p class="hero-copy">
+                        I build practical software that combines web technologies, cloud services, and AI ideas into solutions people can actually use. My goal is to join impactful teams and keep shipping useful products.
+                    </p>
+
+                    <div class="cta-row">
+                        <a class="btn btn-primary" href="#projects">
+                            <i class="fa-solid fa-layer-group"></i>
+                            View Projects
+                        </a>
+                        <a class="btn btn-secondary" href="https://drive.google.com/uc?export=download&id=1KZNmCxlPr7RosHO7XDrAB8N-wFnFoeqB" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                            Download Resume
+                        </a>
+                        <a class="btn btn-secondary" href="#contact">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            Contact Me
+                        </a>
+                    </div>
+
+                    <div class="social-row">
+                        <a href="https://github.com/MallikarjunSure" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://leetcode.com/u/MallikarjunSure/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+                        <a href="https://www.hackerrank.com/profile/suremallikarjun2" target="_blank" rel="noopener" aria-label="HackerRank"><i class="fa-brands fa-hackerrank"></i></a>
+                    </div>
                 </div>
 
-                <!-- Academic Excellence Banner -->
-                <div class="mt-16 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row justify-around items-center text-center">
-                    <div>
-                        <p class="text-4xl font-bold">8.76</p>
-                        <p>Current CGPA</p>
+                <aside class="hero-card" aria-label="Profile summary">
+                    <div class="photo-wrap">
+                        <img src="dp.jpg" alt="Mallikarjun Sure portrait">
                     </div>
-                     <div class="my-4 md:my-0">
-                        <p class="text-4xl font-bold">4+</p>
-                        <p>Awards Won</p>
+                    <h3>Focused On Building Useful Tech</h3>
+                    <p style="margin-top: 8px; color: var(--muted);">
+                        B.E. Computer Science student at BITM Ballari with experience across cloud foundations, full stack web development, and competitive problem solving.
+                    </p>
+                    <div class="stat-grid">
+                        <div class="stat"><strong>8.81</strong><span>CGPA</span></div>
+                        <div class="stat"><strong>2026</strong><span>Graduation</span></div>
+                        <div class="stat"><strong>10+</strong><span>Certificates</span></div>
                     </div>
-                     <div>
-                        <p class="text-4xl font-bold">2026</p>
-                        <p>Expected Graduation</p>
+                </aside>
+            </div>
+        </section>
+
+        <section id="about" class="fade">
+            <div class="container grid-2">
+                <div class="card">
+                    <div class="section-head">
+                        <h2>About Me</h2>
+                        <p>
+                            I am currently pursuing Computer Science and Engineering at Ballari Institute of Technology and Management. I enjoy turning ideas into working software and learning by building.
+                        </p>
+                    </div>
+                    <p style="color: var(--muted);">
+                        My interests are shaped by the projects I build, from AI-assisted interfaces to exam integrity systems and fraud analytics platforms.
+                    </p>
+
+                    <div class="about-cards">
+                        <div class="mini">
+                            <i class="fa-solid fa-cloud"></i>
+                            <h4>Cloud</h4>
+                            <p>In Exam Proctoring and Fraud Detection projects, I designed backend flows ready for cloud deployment and external service integration.</p>
+                        </div>
+                        <div class="mini">
+                            <i class="fa-solid fa-code"></i>
+                            <h4>Web</h4>
+                            <p>Built React and JavaScript interfaces for JARVIS, MedTrack, and monitoring dashboards with practical, user-focused workflows.</p>
+                        </div>
+                        <div class="mini">
+                            <i class="fa-solid fa-database"></i>
+                            <h4>Data</h4>
+                            <p>Used SQL and MongoDB-style data modeling for transaction risk records, session events, analytics, and evidence tracking.</p>
+                        </div>
+                        <div class="mini">
+                            <i class="fa-solid fa-robot"></i>
+                            <h4>AI</h4>
+                            <p>Implemented AI features across projects, including voice interaction in JARVIS and behavior/risk analysis in exam and fraud systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="profesional.jpg" alt="Mallikarjun Sure professional portrait" style="border-radius: 16px; margin-bottom: 16px; border: 1px solid var(--line);">
+                    <h3>Current Focus</h3>
+                    <p style="margin-top: 6px; color: var(--muted);">
+                        Building portfolio-grade projects and sharpening backend, cloud, and DSA skills to contribute confidently in internships and full-time engineering roles.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="fade">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Skills and Tools</h2>
+                    <p>My current technical stack and confidence levels across languages, platforms, and databases.</p>
+                </div>
+
+                <div class="card">
+                    <div class="skill-tabs" role="tablist" aria-label="Skill categories">
+                        <button class="tab active" data-skill="programming" role="tab" aria-selected="true">Programming</button>
+                        <button class="tab" data-skill="platforms" role="tab" aria-selected="false">Tools and Platforms</button>
+                        <button class="tab" data-skill="databases" role="tab" aria-selected="false">Databases</button>
+                    </div>
+
+                    <div id="programming" class="skill-panel show" role="tabpanel"></div>
+
+                    <div id="platforms" class="skill-panel" role="tabpanel"></div>
+
+                    <div id="databases" class="skill-panel" role="tabpanel"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="fade">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Project Stories</h2>
+                    <p>Each project below is presented as a short story: what problem I targeted, how I built it, and what outcome it created.</p>
+                </div>
+
+                <div class="project-grid">
+                    <article class="card project">
+                        <img src="jarvis-project.png" alt="Jarvis virtual assistant project screenshot">
+                        <div class="project-body">
+                            <h3>JARVIS Virtual Assistant</h3>
+                            <div class="story">
+                                <strong>Problem</strong>
+                                <p>Users wanted a simple browser assistant that can respond through voice for everyday mini tasks.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Build</strong>
+                                <p>Implemented a voice-enabled assistant with JavaScript, speech synthesis APIs, and intent-based command handling.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Outcome</strong>
+                                <p>Delivered a hands-on AI-style web experience demonstrating interaction design and browser API integration.</p>
+                            </div>
+                            <div class="pills">
+                                <span class="pill">HTML</span>
+                                <span class="pill">CSS</span>
+                                <span class="pill">JavaScript</span>
+                                <span class="pill">Speech API</span>
+                            </div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://mallikarjunsurejarvisvirtualassistant.netlify.app/" target="_blank" rel="noopener">Live Project</a>
+                                <a class="btn btn-secondary" href="https://github.com/MallikarjunSure/JARVIS-Virtual-Assistant" target="_blank" rel="noopener">Source</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card project">
+                        <img src="Medtrack.png" alt="MedTrack healthcare management project screenshot">
+                        <div class="project-body">
+                            <h3>MedTrack</h3>
+                            <div class="story">
+                                <strong>Problem</strong>
+                                <p>People often miss medicine schedules and struggle to keep treatment-related information organized.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Build</strong>
+                                <p>Built MedTrack as a health-focused project to centralize medication tracking and improve routine adherence.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Outcome</strong>
+                                <p>Created a practical workflow that makes medication management simpler, clearer, and easier to follow daily.</p>
+                            </div>
+                            <div class="pills">
+                                <span class="pill">Healthcare</span>
+                                <span class="pill">Tracking System</span>
+                                <span class="pill">Product Design</span>
+                                <span class="pill">Problem Solving</span>
+                            </div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://github.com/MallikarjunSure/MedTrack" target="_blank" rel="noopener">View Repository</a>
+                                <a class="btn btn-secondary" href="https://github.com/MallikarjunSure/MedTrack/blob/main/README.md" target="_blank" rel="noopener">Read Details</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card project">
+                        <img src="https://raw.githubusercontent.com/MallikarjunSure/Exam-Proctoring-System/main/backend/model/datasets/train/images/front-black-iphone-xr-wooden-table-image-showing-lying-brown-screen-152479279_jpg.rf.d99bb0be94cf98593bb96d42ec98b3c9.jpg" alt="Exam Proctoring System repository image sample">
+                        <div class="project-body">
+                            <h3>AI Smart Exam Proctoring System</h3>
+                            <div class="story">
+                                <strong>Problem</strong>
+                                <p>Online exams require stronger integrity controls because manual invigilation cannot reliably track suspicious behavior at scale.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Build</strong>
+                                <p>Developed a full-stack proctoring platform with React + TypeScript frontend, Node.js backend, real-time risk scoring, and AI-based webcam monitoring.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Outcome</strong>
+                                <p>Enabled live monitoring, behavior event capture, and evidence-backed alerts to help administrators review exam sessions with higher confidence.</p>
+                            </div>
+                            <div class="pills">
+                                <span class="pill">React</span>
+                                <span class="pill">TypeScript</span>
+                                <span class="pill">Node.js</span>
+                                <span class="pill">AI Proctoring</span>
+                            </div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://github.com/MallikarjunSure/Exam-Proctoring-System" target="_blank" rel="noopener">View Repository</a>
+                                <a class="btn btn-secondary" href="https://github.com/MallikarjunSure/Exam-Proctoring-System/blob/main/README.md" target="_blank" rel="noopener">Read Details</a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card project">
+                        <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?q=80&w=1200&auto=format&fit=crop" alt="Fraud analytics dashboard concept">
+                        <div class="project-body">
+                            <h3>Fraud Detection Platform</h3>
+                            <div class="story">
+                                <strong>Problem</strong>
+                                <p>Financial systems need fast and accurate fraud checks, but isolated tools make it difficult to connect scoring, decisions, and operational monitoring.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Build</strong>
+                                <p>Built an end-to-end platform with React + TypeScript frontend, Express + MongoDB backend, and Python-based ML utilities for transaction risk scoring and model insights.</p>
+                            </div>
+                            <div class="story">
+                                <strong>Outcome</strong>
+                                <p>Delivered a production-style workflow where transactions are scored in real time, mapped to approve/verify/block actions, and surfaced through analytics dashboards.</p>
+                            </div>
+                            <div class="pills">
+                                <span class="pill">Fraud Detection</span>
+                                <span class="pill">Machine Learning</span>
+                                <span class="pill">Express API</span>
+                                <span class="pill">Analytics</span>
+                            </div>
+                            <div class="project-actions">
+                                <a class="btn btn-primary" href="https://github.com/MallikarjunSure/Fraud-Detection-Platform" target="_blank" rel="noopener">View Repository</a>
+                                <a class="btn btn-secondary" href="https://github.com/MallikarjunSure/Fraud-Detection-Platform/blob/main/README.md" target="_blank" rel="noopener">Read Details</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="fade">
+            <div class="container grid-2">
+                <div class="card">
+                    <div class="section-head">
+                        <h2>Education</h2>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <small>Nov 2022 - Jun 2026</small>
+                            <h4>Ballari Institute of Technology and Management</h4>
+                            <p style="color: var(--muted);">B.E. in Computer Science and Engineering | CGPA: 8.81</p>
+                        </div>
+                        <div class="timeline-item">
+                            <small>Aug 2020 - Apr 2022</small>
+                            <h4>SC Gurukula PU College</h4>
+                            <p style="color: var(--muted);">PUC (PCMB) | 73.66%</p>
+                        </div>
+                        <div class="timeline-item" style="margin-bottom: 2px;">
+                            <small>Jun 2019 - Jul 2020</small>
+                            <h4>Sri Channabasaweshvara Gurukula Residential High School</h4>
+                            <p style="color: var(--muted);">SSLC | 95.36%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="section-head">
+                        <h2>Awards and Recognition</h2>
+                    </div>
+                    <div class="awards">
+                        <div class="award-item">
+                            <i class="fa-solid fa-trophy"></i>
+                            <div>
+                                <h4>Best Cutting-edge Technology Award</h4>
+                                <p style="color: var(--muted);">HACKVYUHA 2025 National Hackathon</p>
+                            </div>
+                        </div>
+                        <div class="award-item">
+                            <i class="fa-solid fa-medal"></i>
+                            <div>
+                                <h4>Top 7 Finalist</h4>
+                                <p style="color: var(--muted);">Inter College Hackathon HACKB-24</p>
+                            </div>
+                        </div>
+                        <div class="award-item">
+                            <i class="fa-solid fa-award"></i>
+                            <div>
+                                <h4>Top 10 Finalist</h4>
+                                <p style="color: var(--muted);">State-level Hackathon IGNITRON 2K24</p>
+                            </div>
+                        </div>
+                        <div class="award-item">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <div>
+                                <h4>Shikshana Shikhara Prashasti Puraskara</h4>
+                                <p style="color: var(--muted);">For 95.36% in SSLC examinations</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Get In Touch -->
-        <section id="contact" class="py-20 bg-white dark:bg-gray-900 section-fade-in">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-bold text-center mb-2">Get In Touch</h2>
-                 <div class="w-24 h-1 bg-indigo-600 dark:bg-indigo-400 mx-auto mb-12"></div>
-                 <p class="text-center text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">
-                    I'm always open to discussing new opportunities, interesting projects, or collaborations in technology and software development.
-                </p>
+        <section class="fade" id="certifications">
+            <div class="container">
+                <div class="section-head">
+                    <h2>Certifications</h2>
+                    <p>Selected certifications and training programs completed across cloud, AI, and programming topics.</p>
+                </div>
 
-                <div class="flex flex-col md:flex-row gap-12">
-                    <!-- Contact Info -->
-                    <div class="md:w-1/3">
-                         <h3 class="text-2xl font-bold mb-4">Let's Connect</h3>
-                         <p class="text-gray-600 dark:text-gray-400 mb-8">
-                             Whether you have a project in mind, want to collaborate on innovative solutions, or discuss opportunities in cloud computing and AI, I'd love to hear from you. Feel free to reach out through any of the channels below.
-                         </p>
-                         <div class="space-y-6">
-                             <div class="flex items-center gap-4">
-                                 <i class="fas fa-envelope text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                                 <div>
-                                     <h4 class="font-semibold">Email</h4>
-                                     <a href="mailto:suremallikarjun2@gmail.com" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-300">suremallikarjun2@gmail.com</a>
-                                 </div>
-                             </div>
-                             <div class="flex items-center gap-4">
-                                 <i class="fas fa-phone text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                                 <div>
-                                     <h4 class="font-semibold">Phone</h4>
-                                     <p class="text-gray-600 dark:text-gray-400">+91 7975322398</p>
-                                 </div>
-                             </div>
-                              <div class="flex items-center gap-4">
-                                 <i class="fas fa-map-marker-alt text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                                 <div>
-                                     <h4 class="font-semibold">Location</h4>
-                                     <p class="text-gray-600 dark:text-gray-400">Bhatambra Tq. Bhalki Dist, Bidar Karnataka 585411</p>
-                                 </div>
-                             </div>
-                             <div class="flex items-center gap-4">
-                                 <i class="fab fa-linkedin text-2xl text-indigo-600 dark:text-indigo-400"></i>
-                                 <div>
-                                     <h4 class="font-semibold">LinkedIn</h4>
-                                     <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-300">linkedin.com/in/mallikarjun-sure</a>
-                                 </div>
-                             </div>
-                         </div>
+                <div class="cert-grid">
+                    <div class="cert">
+                        <h4>Google Cloud Career Launchpad</h4>
+                        <p>Google</p>
+                        <a href="https://drive.google.com/file/d/1h9YNH1qI8-eUvlwvVIOq-cNBjMhZhJxV/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
                     </div>
-                    <!-- Contact Form -->
-                    <div class="md:w-2/3 bg-gray-50 dark:bg-gray-800 p-8 rounded-lg shadow-md">
-                         <h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
-                        <form id="contact-form" action="https://formspree.io/f/mdklaqrz" method="POST">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="name" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Full Name *</label>
-                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-                                </div>
-                                <div>
-                                     <label for="email" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Email Address *</label>
-                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-                                </div>
-                            </div>
-                             <div class="mb-6">
-                                <label for="subject" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Subject *</label>
-                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-                            </div>
-                            <div class="mb-6">
-                                 <label for="message" class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Message *</label>
-                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
-                            </div>
-                            <button type="submit" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full hover:bg-indigo-700 transition duration-300 w-full">
-                                Send Message
-                            </button>
-                             <div id="form-status" class="mt-4 text-center"></div>
-                        </form>
+                    <div class="cert">
+                        <h4>AWS Cloud Quest</h4>
+                        <p>Amazon Web Services</p>
+                        <a href="https://www.credly.com/badges/356f2462-f34d-4d0c-8904-2b333eb25833/public_url" target="_blank" rel="noopener">View Certificate</a>
+                    </div>
+                    <div class="cert">
+                        <h4>AWS Cloud Practitioner Essentials</h4>
+                        <p>AWS</p>
+                        <a href="https://drive.google.com/file/d/1cSCMmSfzA17zLdMzaf8yViKI5o_iCbDF/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
+                    </div>
+                    <div class="cert">
+                        <h4>AWS Internship</h4>
+                        <p>Smartbridge</p>
+                        <a href="https://drive.google.com/file/d/14BA6Fqp7DbeVG38iT7ReVFuzzK9p54fq/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
+                    </div>
+                    <div class="cert">
+                        <h4>Java Full Stack Wipro</h4>
+                        <p>Wipro</p>
+                        <a href="https://drive.google.com/file/d/1AUm6nlkqO33aNkZ9JA82T4mKYoZkQqMB/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
+                    </div>
+                    <div class="cert">
+                        <h4>Python Programming</h4>
+                        <p>EZ Trainings and Technologies</p>
+                        <a href="https://drive.google.com/file/d/1XzjUCNBeX0Dcw1NVIeeHekjOzz-1NrUy/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
+                    </div>
+                    <div class="cert">
+                        <h4>Salesforce Globel</h4>
+                        <p>Salesforce</p>
+                        <a href="https://drive.google.com/file/d/1N19cuefPUuv_QrACNO_aWFnkuj8is-Zn/view?usp=sharing" target="_blank" rel="noopener">View Certificate</a>
                     </div>
                 </div>
             </div>
         </section>
-        
+
+        <section id="contact" class="fade">
+            <div class="container contact-grid">
+                <div class="card">
+                    <div class="section-head">
+                        <h2>Get in Touch</h2>
+                        <p>I am open to internships, collaborations, and project opportunities.</p>
+                    </div>
+
+                    <div class="contact-lines">
+                        <div class="line"><i class="fa-solid fa-envelope"></i><div><strong>Email:</strong> suremallikarjun2@gmail.com</div></div>
+                        <div class="line"><i class="fa-solid fa-phone"></i><div><strong>Phone:</strong> +91 7975322398</div></div>
+                        <div class="line"><i class="fa-solid fa-location-dot"></i><div><strong>Location:</strong> Bidar, Karnataka, India</div></div>
+                        <div class="line"><i class="fa-brands fa-linkedin"></i><div><strong>LinkedIn:</strong> linkedin.com/in/mallikarjun-sure-114a4525b</div></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom: 10px;">Send a Message</h3>
+                    <form id="contact-form" action="https://formspree.io/f/mdklaqrz" method="POST">
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="name">Full Name</label>
+                                <input id="name" name="name" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" required>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="subject">Subject</label>
+                            <input id="subject" name="subject" type="text" required>
+                        </div>
+                        <div class="field">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button id="send-btn" class="btn btn-primary" type="submit">Send Message</button>
+                        <div id="form-status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
-    
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto px-6 py-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400">&copy; 2025 Mallikarjun Sure. All rights reserved.</p>
-                 <div class="flex space-x-4 mt-4 md:mt-0 text-2xl">
-                    <a href="https://github.com/MallikarjunSure" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://leetcode.com/u/MallikarjunSure/" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fa-solid fa-code"></i></a>
-                    <a href="https://www.hackerrerrank.com/profile/suremallikarjun2" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-hackerrank"></i></a>
-                </div>
+
+    <footer>
+        <div class="container foot">
+            <p>Copyright 2026 Mallikarjun Sure. All rights reserved.</p>
+            <div class="social-row" style="margin-top: 0;">
+                <a href="https://github.com/MallikarjunSure" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/mallikarjun-sure-114a4525b/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://leetcode.com/u/MallikarjunSure/" target="_blank" rel="noopener" aria-label="LeetCode"><i class="fa-solid fa-code"></i></a>
+                <a href="https://www.hackerrank.com/profile/suremallikarjun2" target="_blank" rel="noopener" aria-label="HackerRank"><i class="fa-brands fa-hackerrank"></i></a>
             </div>
         </div>
     </footer>
 
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // THEME TOGGLE LOGIC
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
-            const lightIcon = document.getElementById('theme-toggle-light-icon');
-            const darkIcon = document.getElementById('theme-toggle-dark-icon');
-            const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
-            const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+        document.addEventListener("DOMContentLoaded", function () {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById("theme-toggle");
+            const menuToggle = document.getElementById("menu-toggle");
+            const mobileLinks = document.getElementById("mobile-links");
+            const typingText = document.getElementById("typing-text");
+            const tabs = document.querySelectorAll(".tab");
+            const panels = document.querySelectorAll(".skill-panel");
+            const fades = document.querySelectorAll(".fade");
+            const projectsGrid = document.querySelector("#projects .project-grid");
+            const skillsSection = document.getElementById("skills");
+            const contactForm = document.getElementById("contact-form");
+            const formStatus = document.getElementById("form-status");
+            const sendBtn = document.getElementById("send-btn");
+            const defaultProgrammingSkills = ["Java", "Python"];
+            const defaultDatabaseSkills = ["SQL", "MongoDB"];
+            const skillPercentCache = new Map();
 
-            function updateIcons(isDarkMode) {
-                if (isDarkMode) {
-                    darkIcon.classList.add('hidden');
-                    lightIcon.classList.remove('hidden');
-                    darkIconMobile.classList.add('hidden');
-                    lightIconMobile.classList.remove('hidden');
-                } else {
-                    darkIcon.classList.remove('hidden');
-                    lightIcon.classList.add('hidden');
-                    darkIconMobile.classList.remove('hidden');
-                    lightIconMobile.classList.add('hidden');
-                }
-            }
+            function categorizeSkill(skillName) {
+                const normalized = skillName.toLowerCase();
+                const programmingSkills = new Set([
+                    "c", "c++", "java", "python", "javascript", "typescript", "html", "css"
+                ]);
+                const databaseSkills = new Set([
+                    "sql", "mongodb", "mysql", "postgresql", "firebase", "redis"
+                ]);
 
-            // Set initial icon state
-            updateIcons(document.documentElement.classList.contains('dark'));
-
-            function toggleTheme() {
-                const isDarkMode = document.documentElement.classList.toggle('dark');
-                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
-                updateIcons(isDarkMode);
-            }
-            
-            themeToggleBtn.addEventListener('click', toggleTheme);
-            themeToggleMobileBtn.addEventListener('click', toggleTheme);
-
-
-            // Mobile Menu Toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-            
-             // Typing animation
-            const typingText = document.getElementById('typing-text');
-            const roles = ["a CSE Student", "a Problem Solver", "a Quick Learner"];
-            let roleIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-
-            function type() {
-                const currentRole = roles[roleIndex];
-                if (isDeleting) {
-                    typingText.textContent = currentRole.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    typingText.textContent = currentRole.substring(0, charIndex + 1);
-                    charIndex++;
+                if (databaseSkills.has(normalized) || /db|database|sql|mongo/.test(normalized)) {
+                    return "databases";
                 }
 
-                if (!isDeleting && charIndex === currentRole.length) {
-                    setTimeout(() => isDeleting = true, 2000);
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    roleIndex = (roleIndex + 1) % roles.length;
+                if (programmingSkills.has(normalized)) {
+                    return "programming";
                 }
-                
-                const typeSpeed = isDeleting ? 100 : 200;
-                setTimeout(type, typeSpeed);
+
+                return "platforms";
             }
-            type();
 
-            // Skills tabs
-            const skillTabs = document.querySelectorAll('.skill-tab');
-            const skillContents = document.querySelectorAll('.skill-content');
-            skillTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    skillTabs.forEach(t => {
-                        t.classList.remove('active-tab');
-                        t.style.backgroundColor = '';
-                        t.style.color = '';
-                    });
-                    tab.classList.add('active-tab');
+            function getRandomPercentForSkill(skillName) {
+                if (skillPercentCache.has(skillName)) {
+                    return skillPercentCache.get(skillName);
+                }
 
-                    const target = tab.getAttribute('data-tab');
-                    skillContents.forEach(content => {
-                        if (content.id === target) {
-                            content.classList.remove('hidden');
-                            content.classList.add('active');
-                        } else {
-                            content.classList.add('hidden');
-                            content.classList.remove('active');
+                const usedValues = new Set(skillPercentCache.values());
+                let percent = 60 + Math.floor(Math.random() * 21);
+                let tries = 0;
+
+                while (usedValues.has(percent) && tries < 50) {
+                    percent = 60 + Math.floor(Math.random() * 21);
+                    tries += 1;
+                }
+
+                skillPercentCache.set(skillName, percent);
+                return percent;
+            }
+
+            function createSkillItem(name, percent) {
+                const item = document.createElement("div");
+                item.className = "skill-item";
+
+                const top = document.createElement("div");
+                top.className = "skill-top";
+
+                const nameSpan = document.createElement("span");
+                nameSpan.textContent = name;
+
+                const valueSpan = document.createElement("span");
+                valueSpan.textContent = percent + "%";
+
+                top.appendChild(nameSpan);
+                top.appendChild(valueSpan);
+
+                const meter = document.createElement("div");
+                meter.className = "meter";
+
+                const fill = document.createElement("span");
+                fill.setAttribute("data-width", percent + "%");
+
+                meter.appendChild(fill);
+                item.appendChild(top);
+                item.appendChild(meter);
+
+                return item;
+            }
+
+            function renderSkillsFromProjects() {
+                const projects = document.querySelectorAll("#projects .project");
+                const skillCounts = new Map();
+
+                projects.forEach(function (project) {
+                    const projectSkills = new Set();
+                    project.querySelectorAll(".pill").forEach(function (pill) {
+                        const skill = pill.textContent.trim();
+                        if (skill) {
+                            projectSkills.add(skill);
                         }
                     });
+
+                    projectSkills.forEach(function (skill) {
+                        skillCounts.set(skill, (skillCounts.get(skill) || 0) + 1);
+                    });
+                });
+
+                defaultProgrammingSkills.forEach(function (skill) {
+                    if (!skillCounts.has(skill)) {
+                        skillCounts.set(skill, 0);
+                    }
+                });
+
+                defaultDatabaseSkills.forEach(function (skill) {
+                    if (!skillCounts.has(skill)) {
+                        skillCounts.set(skill, 0);
+                    }
+                });
+
+                const grouped = {
+                    programming: [],
+                    platforms: [],
+                    databases: []
+                };
+
+                skillCounts.forEach(function (count, skill) {
+                    const category = categorizeSkill(skill);
+                    grouped[category].push({
+                        name: skill,
+                        percent: getRandomPercentForSkill(skill),
+                        count: count
+                    });
+                });
+
+                Object.keys(grouped).forEach(function (key) {
+                    grouped[key].sort(function (a, b) {
+                        if (b.count !== a.count) {
+                            return b.count - a.count;
+                        }
+                        return a.name.localeCompare(b.name);
+                    });
+                });
+
+                Object.keys(grouped).forEach(function (key) {
+                    const panel = document.getElementById(key);
+                    panel.innerHTML = "";
+
+                    if (grouped[key].length === 0) {
+                        const empty = document.createElement("p");
+                        empty.className = "skill-empty";
+                        empty.textContent = "No matching skills yet. Add project tags to build this category.";
+                        panel.appendChild(empty);
+                        return;
+                    }
+
+                    grouped[key].forEach(function (entry) {
+                        panel.appendChild(createSkillItem(entry.name, entry.percent));
+                    });
+                });
+            }
+
+            function applyMeterWidths(animated) {
+                const meters = document.querySelectorAll(".meter > span");
+                meters.forEach(function (meter) {
+                    if (animated) {
+                        meter.style.width = "0";
+                    }
+                    meter.style.width = meter.getAttribute("data-width");
+                });
+            }
+
+            function scheduleSkillRefresh() {
+                if (scheduleSkillRefresh.timer) {
+                    clearTimeout(scheduleSkillRefresh.timer);
+                }
+
+                scheduleSkillRefresh.timer = setTimeout(function () {
+                    renderSkillsFromProjects();
+
+                    if (!skillsSection) {
+                        return;
+                    }
+
+                    const sectionTop = skillsSection.getBoundingClientRect().top;
+                    const inView = sectionTop < window.innerHeight;
+
+                    if (inView) {
+                        requestAnimationFrame(function () {
+                            applyMeterWidths(true);
+                        });
+                    }
+                }, 70);
+            }
+
+            function syncThemeIcon() {
+                const icon = themeToggle.querySelector("i");
+                if (html.classList.contains("dark")) {
+                    icon.className = "fa-solid fa-sun";
+                    themeToggle.setAttribute("aria-label", "Switch to light theme");
+                } else {
+                    icon.className = "fa-solid fa-moon";
+                    themeToggle.setAttribute("aria-label", "Switch to dark theme");
+                }
+            }
+
+            syncThemeIcon();
+
+            themeToggle.addEventListener("click", function () {
+                html.classList.toggle("dark");
+                localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+                syncThemeIcon();
+            });
+
+            menuToggle.addEventListener("click", function () {
+                const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+                menuToggle.setAttribute("aria-expanded", String(!expanded));
+                mobileLinks.classList.toggle("show");
+            });
+
+            mobileLinks.querySelectorAll("a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    mobileLinks.classList.remove("show");
+                    menuToggle.setAttribute("aria-expanded", "false");
                 });
             });
 
-            
-            // Intersection Observer for animations
-            const sections = document.querySelectorAll('.section-fade-in');
-            const skillBars = document.querySelectorAll('.skill-bar-fill');
+            const roles = ["a CSE Student", "a Problem Solver", "a Quick Learner", "a Cloud Enthusiast"];
+            let roleIndex = 0;
+            let charIndex = 0;
+            let deleting = false;
 
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
+            function runTyping() {
+                const role = roles[roleIndex];
+                if (!deleting) {
+                    charIndex += 1;
+                    typingText.textContent = role.slice(0, charIndex);
+                    if (charIndex === role.length) {
+                        deleting = true;
+                        setTimeout(runTyping, 1200);
+                        return;
+                    }
+                } else {
+                    charIndex -= 1;
+                    typingText.textContent = role.slice(0, charIndex);
+                    if (charIndex === 0) {
+                        deleting = false;
+                        roleIndex = (roleIndex + 1) % roles.length;
+                    }
+                }
+                setTimeout(runTyping, deleting ? 60 : 110);
+            }
+
+            runTyping();
+
+            renderSkillsFromProjects();
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener("click", function () {
+                    const key = tab.getAttribute("data-skill");
+
+                    tabs.forEach(function (t) {
+                        t.classList.remove("active");
+                        t.setAttribute("aria-selected", "false");
+                    });
+
+                    panels.forEach(function (panel) {
+                        panel.classList.remove("show");
+                    });
+
+                    tab.classList.add("active");
+                    tab.setAttribute("aria-selected", "true");
+                    document.getElementById(key).classList.add("show");
+                });
+            });
+
+            const revealObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        
-                        if(entry.target.id === 'skills') {
-                             skillBars.forEach(bar => {
-                                const width = bar.getAttribute('data-width');
-                                bar.style.width = width;
-                            });
-                        }
+                        entry.target.classList.add("visible");
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.14 });
 
-            sections.forEach(section => {
-                sectionObserver.observe(section);
+            fades.forEach(function (el) {
+                revealObserver.observe(el);
             });
-            
-            // Contact Form Submission
-            const contactForm = document.getElementById('contact-form');
-            const formStatus = document.getElementById('form-status');
 
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const submitButton = contactForm.querySelector('button[type="submit"]');
+            const meterObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        applyMeterWidths(false);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            meterObserver.observe(skillsSection);
+
+            if (projectsGrid) {
+                const projectObserver = new MutationObserver(function () {
+                    scheduleSkillRefresh();
+                });
+
+                projectObserver.observe(projectsGrid, {
+                    childList: true,
+                    subtree: true,
+                    characterData: true
+                });
+            }
+
+            contactForm.addEventListener("submit", function (event) {
+                event.preventDefault();
                 const formData = new FormData(contactForm);
 
-                submitButton.disabled = true;
-                submitButton.innerHTML = 'Sending...';
+                sendBtn.disabled = true;
+                sendBtn.textContent = "Sending...";
+                formStatus.textContent = "";
 
                 fetch(contactForm.action, {
-                    method: 'POST',
+                    method: "POST",
                     body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                }).then(response => {
+                    headers: { "Accept": "application/json" }
+                })
+                .then(function (response) {
                     if (response.ok) {
-                        formStatus.innerHTML = '<p class="text-green-600">Message sent successfully! Thank you.</p>';
+                        formStatus.style.color = "var(--ok)";
+                        formStatus.textContent = "Message sent successfully. Thank you!";
                         contactForm.reset();
-                    } else {
-                        response.json().then(data => {
-                            if (Object.hasOwn(data, 'errors')) {
-                                formStatus.innerHTML = `<p class="text-red-600">${data["errors"].map(error => error["message"]).join(", ")}</p>`
-                            } else {
-                                formStatus.innerHTML = '<p class="text-red-600">Oops! There was a problem submitting your form.</p>'
-                            }
-                        })
+                        return;
                     }
-                }).catch(error => {
-                    formStatus.innerHTML = '<p class="text-red-600">Failed to send message. Please try again or contact me directly via email.</p>';
-                }).finally(() => {
-                    submitButton.disabled = false;
-                    submitButton.innerHTML = 'Send Message';
-                    setTimeout(() => {
-                       formStatus.innerHTML = '';
+                    return response.json().then(function (data) {
+                        const msg = data && data.errors ? data.errors.map(function (e) { return e.message; }).join(", ") : "Could not send your message. Please try again.";
+                        throw new Error(msg);
+                    });
+                })
+                .catch(function (error) {
+                    formStatus.style.color = "var(--err)";
+                    formStatus.textContent = error.message || "Something went wrong. Please try again later.";
+                })
+                .finally(function () {
+                    sendBtn.disabled = false;
+                    sendBtn.textContent = "Send Message";
+                    setTimeout(function () {
+                        formStatus.textContent = "";
                     }, 5000);
                 });
             });
         });
     </script>
-
 </body>
-
 </html>
-
-
